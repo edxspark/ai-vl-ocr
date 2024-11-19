@@ -14,7 +14,7 @@ STORAGE_PATH = os.getenv("STORAGE_PATH")
 app = FastAPI(
     title="AI-VL-OCR",
     version="1.0",
-    description="SGIT AI Invoice",
+    description="Open source project for OCR based on AI vision.",
 )
 
 app.add_middleware(
