@@ -6,3 +6,6 @@
 
 src/agents/TicketExtractAgent/uploaded/*
 nohup.out
+
+ui/node_modules
+dist
