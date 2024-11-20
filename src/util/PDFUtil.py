@@ -1,24 +1,28 @@
+from fastapi import UploadFile
 from pdf2image import convert_from_path
 import os
 
-def pdf_to_images(pdf_file):
-    # PDF文件路径
-    pdf_path = 'your_pdf_file.pdf'
-    # 输出图片的保存路径
-    output_folder = 'output_images'
+from src.util import FileUtil
+from dotenv import load_dotenv
 
-    # 确保输出文件夹存在
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+load_dotenv()
+STORAGE_PATH = os.getenv("STORAGE_PATH")
 
-    # 将PDF转换为图片
-    images = convert_from_path(pdf_path)
 
-    # 遍历每一页，保存为图片
+def pdf_to_images(file: UploadFile):
+
+    # Save file
+    pdf_file_path = FileUtil.save_file(file)
+
+    # Output images path
+    file_name, file_extension = os.path.splitext(pdf_file_path)
+    pdf_images_directory = f"{STORAGE_PATH}/{file_name}"
+    os.makedirs(pdf_images_directory, exist_ok=True)
+
+    # Convert
+    image_paths = []
+    images = convert_from_path(pdf_file_path)
     for i, page in enumerate(images):
-        # 构建图片文件名
-        image_filename = f'{output_folder}/page_{i + 1}.jpg'
-        # 保存图片
-        page.save(image_filename, 'JPEG')
-
-    print(f'PDF转换完成，图片已保存到{output_folder}文件夹。')
+        image_file_path = f'{pdf_images_directory}/page_{i + 1}.jpg'
+        image_paths.append(image_file_path)
+    return image_paths
