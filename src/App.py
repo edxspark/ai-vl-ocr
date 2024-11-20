@@ -1,15 +1,16 @@
 #!/usr/bin/venv python
 import os
 import sys
+
+from pydantic import BaseModel
+
+from src.agent import AIOCRAgent
+from src.domain.BO import AIVLBo
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from fastapi import FastAPI, UploadFile, File, Form
-from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
-
-load_dotenv()
-STORAGE_PATH = os.getenv("STORAGE_PATH")
 
 app = FastAPI(
     title="AI-VL-OCR",
@@ -26,10 +27,11 @@ app.add_middleware(
 )
 
 
+
 # Upload file
 @app.post("/ai/vl/ocr")
-def ai_vl_ocr(file: UploadFile = File(...)):
-    return "OK"
+def ai_vl_ocr(aivlBo:AIVLBo):
+    return AIOCRAgent.ai_vl_ocr(aivlBo)
 
 
 if __name__ == "__main__":

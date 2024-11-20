@@ -5,10 +5,10 @@ With weird layouts, tables, charts, etc.
 The vision models just make sense!   
 
 The general logic:
-- Pass in a file (pdf, docx, image, etc.) 
+- Pass in a file (pdf, image, etc.) 
 - Convert that file into a series of images 
 - Pass each image to AI vision LLM and ask nicely for Markdown 
-- Aggregate the responses and return Markdown
+- Aggregate the responses and return Markdown or JSON
 
 # Getting Started
 ```
