@@ -11,6 +11,8 @@ The general logic:
 - Aggregate the responses and return Markdown or JSON
 
 # Getting Started
+cuda: 18+  
+gpu: 24G
 ```
 conda create --name ai-vl-ocr python=3.11
 conda activate ai-vl-ocr
