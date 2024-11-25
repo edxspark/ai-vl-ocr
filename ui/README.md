@@ -1,14 +1,14 @@
 # superforu-ai-ocr-ui
 
-## 开发
-修改后台服务地址：sr/api/api.js api.baseURL
+## Quick start
+Update API host: sr/api/api.js api.baseURL
 
 ```
 npm install
 npm run serve
 ```
 
-### 部署
+### Deploy
 
 ```
 npm run build
