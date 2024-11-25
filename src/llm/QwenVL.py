@@ -38,8 +38,8 @@ class QwenVL:
         # Content
         content = []
         for img_path in img_paths:
-            max_width = 1500
-            max_height = 1500
+            max_width = 1000
+            max_height = 1000
             image = Image.open(img_path)
             width, height = image.size
             if width > max_width:
