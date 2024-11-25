@@ -2,7 +2,7 @@ import os
 
 from fastapi import UploadFile
 from src.domain.BO import AIVLBo
-from src.enum.DocTypeEnum import DocTypeEnum
+from src.venum.DocTypeEnum import DocTypeEnum
 from src.llm.QwenVL import QwenVL
 from src.util import FileUtil, PDFUtil
 from dotenv import load_dotenv
