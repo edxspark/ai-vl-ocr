@@ -9,10 +9,12 @@ STORAGE_PATH = os.getenv("STORAGE_PATH")
 
 
 def save_file(file: UploadFile):
-    file_name, file_extension = os.path.splitext(file.filename)
     file_name_uuid = str(uuid.uuid4())
+    file_dir = f"{STORAGE_PATH}/{file_name_uuid}/imgs"
+    os.makedirs(file_dir, exist_ok=True)
+    file_name, file_extension = os.path.splitext(file.filename)
     file_name_new = f"{file_name_uuid}{file_extension}"
-    file_path = f"{STORAGE_PATH}/{file_name_new}"
-    with open(file_path, "wb") as buffer:
+    file_save_path = f"{file_dir}/{file_name_new}"
+    with open(file_save_path, "wb") as buffer:
         buffer.write(file.file.read())
-    return file_path
+    return file_save_path
