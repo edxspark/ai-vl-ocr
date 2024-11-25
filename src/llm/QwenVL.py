@@ -8,16 +8,18 @@ from dotenv import load_dotenv
 
 load_dotenv()
 STORAGE_PATH = os.getenv("STORAGE_PATH")
+AI_VL_MODEL = os.getenv("AI_VL_MODEL")
+
 
 # GPU
-# os.environ['MODELSCOPE_CACHE'] = f"{STORAGE_PATH}/models"
-# model_dir = snapshot_download('Qwen/Qwen2-VL-7B-Instruct')
-# model = Qwen2VLForConditionalGeneration.from_pretrained(model_dir, torch_dtype="auto", device_map="auto")
-# processor = AutoProcessor.from_pretrained(model_dir)
+os.environ['MODELSCOPE_CACHE'] = f"{STORAGE_PATH}/models"
+model_dir = snapshot_download(AI_VL_MODEL)
+model = Qwen2VLForConditionalGeneration.from_pretrained(model_dir, torch_dtype="auto", device_map="auto")
+processor = AutoProcessor.from_pretrained(model_dir)
 
 # No GPU
-model = None
-processor = None
+# model = None
+# processor = None
 
 
 class QwenVL:
