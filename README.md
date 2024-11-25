@@ -1,4 +1,4 @@
-# AI-VL-OCR
+# superforu-ai-ocr
 A very simple way of OCR-ing a document of AI vision.  
 Documents are meant to be a visual representation after all.  
 With weird layouts, tables, charts, etc.   

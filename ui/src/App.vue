@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AIVLOCR msg="Welcome to AI-VL-OCR" />
+    <AIVLOCR msg="Welcome to Superforu AI OCR" />
   </div>
 </template>
 
