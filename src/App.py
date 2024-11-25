@@ -2,8 +2,6 @@
 import os
 import sys
 
-from pydantic import BaseModel
-
 from src.agent import AIOCRAgent
 from src.domain.BO import AIVLBo
 
