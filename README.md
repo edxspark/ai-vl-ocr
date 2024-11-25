@@ -13,16 +13,20 @@ The general logic:
 # Getting Started
 cuda: 18+  
 gpu: 24G
+## Backend
 ```
-conda create --name ai-vl-ocr python=3.11
-conda activate ai-vl-ocr
+conda create --name superforu-ai-ocr python=3.11
+conda activate superforu-ai-ocr
 pip install -r requirements.txt
 python src/App.py
 ```
 
-# Usage
+## Frontend
 ```
-http://127.0.0.1:19527
+cd ui
+npm i
+npm run dev
+http://127.0.0.1:3000
 ```
 
 # Example Output
