@@ -6,6 +6,8 @@ from modelscope import snapshot_download
 from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
 from dotenv import load_dotenv
 
+from src.util import ImageUtil
+
 load_dotenv()
 STORAGE_PATH = os.getenv("STORAGE_PATH")
 AI_VL_MODEL = os.getenv("AI_VL_MODEL")
@@ -28,7 +30,7 @@ class QwenVL:
     def vl_ocr(img_paths: [], prompt: str, returnType: str):
 
         # Prompt
-        prompt = f"""
+        vl_prompt = f"""
         ```{prompt}```
         
         # RESPONSE #
@@ -38,22 +40,19 @@ class QwenVL:
         # Content
         content = []
         for img_path in img_paths:
-            max_width = 1000
-            max_height = 1000
+            max_sharp = 1000
             image = Image.open(img_path)
             width, height = image.size
-            if width > max_width:
-                width = max_width
-            if height > max_height:
-                height = max_height
+            if width > max_sharp or height > max_sharp:
+                print("####Resize:", img_path)
+                ImageUtil.resize_image(img_path, img_path, max_sharp)
+
             img = {
                 "type": "image",
-                "resized_height": height,
-                "resized_width": width,
                 "image": img_path,
             }
             content.append(img)
-        content.append({"type": "text", "text": prompt})
+        content.append({"type": "text", "text": vl_prompt})
         messages = [
             {
                 "role": "user",
