@@ -27,7 +27,9 @@ app.add_middleware(
 @app.post("/ai/vl/ocr")
 def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str = Form(...), file: UploadFile = File(...)):
     aivlBo = AIVLBo(docType=docType, returnType=returnType, prompt=prompt, file=file)
-    return AIOCRAgent.ai_vl_ocr(aivlBo, file)
+    result = AIOCRAgent.ai_vl_ocr(aivlBo, file)
+    print(result)
+    return result
 
 
 if __name__ == "__main__":
