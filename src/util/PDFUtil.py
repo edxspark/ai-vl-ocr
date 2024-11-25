@@ -1,6 +1,5 @@
 import fitz
 from fastapi import UploadFile
-from pdf2image import convert_from_path
 import os
 
 from src.util import FileUtil
