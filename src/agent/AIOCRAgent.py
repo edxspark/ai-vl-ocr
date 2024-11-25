@@ -1,14 +1,11 @@
 import os
 
 from fastapi import UploadFile
-
 from src.domain.BO import AIVLBo
 from src.enum.DocTypeEnum import DocTypeEnum
-from dotenv import load_dotenv
-
 from src.llm.QwenVL import QwenVL
 from src.util import FileUtil, PDFUtil
-
+from dotenv import load_dotenv
 load_dotenv()
 STORAGE_PATH = os.getenv("STORAGE_PATH")
 
