@@ -11,13 +11,19 @@ The general logic:
 - Aggregate the responses and return Markdown or JSON
 
 # Getting Started
-cuda: 18+  
+cuda: 12.4  
 gpu: 24G
 ## Backend
 ```
+# Create python env and install requirements
 conda create --name superforu-ai-ocr python=3.11
 conda activate superforu-ai-ocr
 pip install -r requirements.txt
+
+# Install pytorch, ref: https://pytorch.org/get-started/locally
+pip install torch torchvision torchaudio
+
+# Start server
 python src/App.py
 ```
 
