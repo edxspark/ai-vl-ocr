@@ -1,4 +1,7 @@
 # superforu-ai-ocr
+
+![example1](public/example1.jpg)
+
 A very simple way of OCR-ing a document of AI vision.  
 Documents are meant to be a visual representation after all.  
 With weird layouts, tables, charts, etc.   
@@ -28,11 +31,12 @@ python src/App.py
 ```
 
 ## Frontend
+Update backend API [baseURL]: api/api.js
 ```
 cd ui
 npm i
 npm run dev
-http://127.0.0.1:3000
+http://127.0.0.1:8080
 ```
 
 # Example Output
