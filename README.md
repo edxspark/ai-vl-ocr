@@ -2,6 +2,8 @@
 
 ![example1](public/example1.jpg)
 
+## Fully localized AI vision OCR
+
 A very simple way of OCR-ing a document of AI vision.  
 Documents are meant to be a visual representation after all.  
 With weird layouts, tables, charts, etc.   
