@@ -127,7 +127,8 @@ export default {
       this.markdownContent = "# OCR-ing, please wait...."
       console.log("fileType:"+file.type)
       this.fileList1=[file]
-      if(file.type==="image/png" || file==="image/jpg" || file==="image/jpeg"){
+      const fileType = file.type
+      if(fileType==="image/png" || fileType==="image/jpg" || fileType==="image/jpeg"){
           this.uploadData.docType="IMG";
       }else{
         this.uploadData.docType="PDF";
