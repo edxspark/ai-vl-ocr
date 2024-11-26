@@ -5,8 +5,8 @@
         <img src="@/assets/logo.jpg" alt="logo" class="logo" />
         <span class="title">superforu-ai-ocr</span>
       </el-col>
-      <el-col :span="8">
-        <span style="font-weight: bold">AI vision document OCR</span>
+      <el-col :span="8" style="vertical-align: middle">
+        <span style="font-weight: bold;">AI vision document OCR</span>
       </el-col>
     </el-row>
     <el-divider style="margin:2px !important;"></el-divider>
@@ -175,7 +175,8 @@ export default {
 }
 
 .title {
-  font-size: 24px;
+  font-family: 'circular,sans-serif';
+  font-size: 32px;
   font-weight: bold;
   color:#5866f2;
 }
