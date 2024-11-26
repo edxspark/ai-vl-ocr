@@ -40,15 +40,19 @@ class QwenVL:
         # Content
         content = []
         for img_path in img_paths:
-            max_sharp = 1000
+
+            max_width = 1000
+            max_height = 1000
             image = Image.open(img_path)
             width, height = image.size
-            if width > max_sharp or height > max_sharp:
-                print("####Resize:", img_path)
-                ImageUtil.resize_image(img_path, img_path, max_sharp)
-
+            if width > max_width:
+                width = max_width
+            if height > max_height:
+                height = max_height
             img = {
                 "type": "image",
+                "resized_height": height,
+                "resized_width": width,
                 "image": img_path,
             }
             content.append(img)
