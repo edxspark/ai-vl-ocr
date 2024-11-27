@@ -1,6 +1,14 @@
+import os
 from PIL import Image
 import requests
 from transformers import AutoModelForCausalLM, AutoProcessor
+from dotenv import load_dotenv
+from modelscope import snapshot_download
+load_dotenv()
+STORAGE_PATH = os.getenv("STORAGE_PATH")
+
+os.environ['MODELSCOPE_CACHE'] = f"{STORAGE_PATH}/models"
+model_dir = snapshot_download('AI-ModelScope/Phi-3.5-vision-instruct', revision='master')
 
 
 class PhiVL:
