@@ -57,4 +57,3 @@ accelerate>=0.26.0
 flash_attn==2.5.8
 Pillow==10.3.0
 Requests==2.31.0
-transformers==4.40.2
