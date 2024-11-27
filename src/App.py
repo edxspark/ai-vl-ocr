@@ -35,15 +35,6 @@ def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str 
     print("#####ai_vl_ocr END")
     return result
 
-
-@app.post("/ai/vl/ocr/phi")
-def ai_vl_ocr_phi(img_url):
-    print("#####ai_vl_ocr_phi BEG")
-    result = PhiVL().vl_ocr(img_url)
-    print("#####ai_vl_ocr_phi END")
-    return result
-
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=6006)
