@@ -95,7 +95,7 @@ export default {
     exec_ocr(){
       this.result = 'processing...'
       this.downloadLoading = true
-      const compare_url = `/ai/vl/ocr?img_file_name1=${this.file_id1}`;
+      const compare_url = `/api/ai/vl/ocr?img_file_name1=${this.file_id1}`;
       api.post(compare_url, { responseType: 'text' })
           .then((response) => {
             this.result = response
@@ -139,7 +139,7 @@ export default {
   },
 
   mounted() {
-    this.uploadHost = api.defaults.baseURL+"/ai/vl/ocr";
+    this.uploadHost = "/api/ai/vl/ocr";
     this.markdownContent = "" +
         "        A very simple way of OCR-ing a document of AI vision.\n" +
         "        Documents are meant to be a visual representation after all.\n" +

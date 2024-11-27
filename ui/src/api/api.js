@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // 创建一个 Axios 实例
 const api = axios.create({
-    baseURL: 'https://u260419-a935-26f44c0c.bjb1.seetacloud.com:8443',
+    baseURL: 'http://127.0.0.1:8080',
     timeout: 10000
 })
 

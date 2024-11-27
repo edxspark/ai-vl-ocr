@@ -1,8 +1,10 @@
 #!/usr/bin/venv python
 import os
 import sys
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from src.llm.PhiVL import PhiVL
 from src.agent import AIOCRAgent
 from src.domain.BO import AIVLBo
 from fastapi import FastAPI, UploadFile, File, Form
@@ -33,6 +35,12 @@ def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str 
     print("#####ai_vl_ocr END")
     return result
 
+@app.post("/ai/vl/ocr/phi")
+def ai_vl_ocr_phi(img_url):
+    print("#####ai_vl_ocr_phi BEG")
+    result = PhiVL().vl_ocr(img_url)
+    print("#####ai_vl_ocr_phi END")
+    return result
 
 if __name__ == "__main__":
     import uvicorn
