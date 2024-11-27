@@ -1,12 +1,10 @@
 import os
 
-from PIL import Image
 from qwen_vl_utils import process_vision_info
 from modelscope import snapshot_download
 from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
 from dotenv import load_dotenv
 
-from src.util import ImageUtil
 
 load_dotenv()
 STORAGE_PATH = os.getenv("STORAGE_PATH")
@@ -40,6 +38,8 @@ class QwenVL:
         # RESPONSE #
         Output format: ```{returnType}```
         """
+
+        print("#####prompt:", vl_prompt)
 
         # Content
         content = []
