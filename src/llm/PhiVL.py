@@ -14,7 +14,7 @@ model_dir = snapshot_download(model_name, revision='master')
 
 
 class PhiVL:
-    def __init__(self, model_id=f"{model_root}/{model_name}", device="cuda"):
+    def __init__(self, model_id=f"{model_root}/hub/{model_name}", device="cuda"):
         """
         使用指定的模型 ID 和设备初始化 Phi3VisionModel。
 
