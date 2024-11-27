@@ -17,7 +17,10 @@ AI_VL_MODEL = os.getenv("AI_VL_MODEL")
 os.environ['MODELSCOPE_CACHE'] = f"{STORAGE_PATH}/models"
 model_dir = snapshot_download(AI_VL_MODEL)
 model = Qwen2VLForConditionalGeneration.from_pretrained(model_dir, torch_dtype="auto", device_map="auto")
-processor = AutoProcessor.from_pretrained(model_dir)
+
+min_pixels = 256 * 28 * 28
+max_pixels = 1280 * 28 * 28
+processor = AutoProcessor.from_pretrained(model_dir, min_pixels=min_pixels, max_pixels=max_pixels)
 
 # No GPU
 # model = None
@@ -41,18 +44,8 @@ class QwenVL:
         content = []
         for img_path in img_paths:
 
-            max_width = 1000
-            max_height = 1000
-            image = Image.open(img_path)
-            width, height = image.size
-            if width > max_width:
-                width = max_width
-            if height > max_height:
-                height = max_height
             img = {
                 "type": "image",
-                "resized_height": height,
-                "resized_width": width,
                 "image": img_path,
             }
             content.append(img)
