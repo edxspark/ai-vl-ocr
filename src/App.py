@@ -4,7 +4,6 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.llm.PhiVL import PhiVL
 from src.agent import AIOCRAgent
 from src.domain.BO import AIVLBo
 from fastapi import FastAPI, UploadFile, File, Form
