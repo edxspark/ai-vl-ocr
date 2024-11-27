@@ -33,7 +33,7 @@ class QwenVL:
 
         # Prompt
         vl_prompt = f"""
-        ```{prompt}```
+        {prompt}
         
         # RESPONSE #
         Output format: ```{returnType}```
