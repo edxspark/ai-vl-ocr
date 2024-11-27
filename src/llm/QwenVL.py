@@ -36,7 +36,7 @@ class QwenVL:
         {prompt}
         
         # RESPONSE #
-        Output format: ```{returnType}```
+        Output format: {returnType}
         """
 
         print("#####prompt:", vl_prompt)
