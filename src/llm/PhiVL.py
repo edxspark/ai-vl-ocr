@@ -7,12 +7,14 @@ from modelscope import snapshot_download
 load_dotenv()
 STORAGE_PATH = os.getenv("STORAGE_PATH")
 
-os.environ['MODELSCOPE_CACHE'] = f"{STORAGE_PATH}/models"
-model_dir = snapshot_download('AI-ModelScope/Phi-3.5-vision-instruct', revision='master')
+model_root = f"{STORAGE_PATH}/models"
+model_name = 'AI-ModelScope/Phi-3.5-vision-instruct'
+os.environ['MODELSCOPE_CACHE'] = model_root
+model_dir = snapshot_download(model_name, revision='master')
 
 
 class PhiVL:
-    def __init__(self, model_id="microsoft/Phi-3-vision-128k-instruct", device="cuda"):
+    def __init__(self, model_id=f"{model_root}/{model_name}", device="cuda"):
         """
         使用指定的模型 ID 和设备初始化 Phi3VisionModel。
 
