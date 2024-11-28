@@ -54,11 +54,13 @@ class QwenVL:
         content.append({"type": "text", "text": "What are the common elements in these pictures?"},)
 
         messages1 = [{"role": "user", "content": content}]
+        print("messages1:", messages1)
 
         messages2 = [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": vl_prompt},
         ]
+        print("messages2:", messages2)
 
         # Combine messages for batch processing
         messages = [messages1, messages2]
