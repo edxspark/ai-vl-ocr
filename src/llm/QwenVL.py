@@ -44,14 +44,16 @@ class QwenVL:
         #
 
         # Content
-        messages1 = []
+        content = []
         for img_path in img_paths:
             img = {
                 "type": "image",
                 "image": f"file://{img_path}",
             }
-            messages1.append(img)
-        messages1.append({"type": "text", "text": "What are the common elements in these pictures?"},)
+            content.append(img)
+        content.append({"type": "text", "text": "What are the common elements in these pictures?"},)
+
+        messages1 = [{"role": "user", "content": content}]
 
         messages2 = [
             {"role": "system", "content": "You are a helpful assistant."},
