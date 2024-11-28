@@ -41,25 +41,27 @@ class QwenVL:
 
         print("#####prompt:", vl_prompt)
 
-        #
-
         # Content
         content = []
         for img_path in img_paths:
+
             img = {
                 "type": "image",
-                "image": f"{img_path}",
+                "image": img_path,
             }
             content.append(img)
         content.append({"type": "text", "text": vl_prompt})
-
-        messages = [{"role": "user", "content": content}]
-
-        # Preparation for batch inference
-        text = [
-            processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        messages = [
+            {
+                "role": "user",
+                "content": content
+            }
         ]
 
+        # Preparation for inference
+        text = processor.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
         image_inputs, video_inputs = process_vision_info(messages)
         inputs = processor(
             text=[text],
@@ -78,7 +80,7 @@ class QwenVL:
         output_text = processor.batch_decode(
             generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
         )
-        print("output_text=",output_text)
+
         return output_text
 
 
