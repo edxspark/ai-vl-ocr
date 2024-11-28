@@ -58,8 +58,8 @@
 
 
 <script>
-import api from '@/api/api';
 import VueMarkdown from 'vue-markdown';
+import api from "@/api/api";
 export default {
   components: {
       'vue-markdown': VueMarkdown
@@ -92,24 +92,6 @@ export default {
     }
   },
   methods: {
-    exec_ocr(){
-      this.result = 'processing...'
-      this.downloadLoading = true
-      const compare_url = `/api/ai/vl/ocr?img_file_name1=${this.file_id1}`;
-      api.post(compare_url, { responseType: 'text' })
-          .then((response) => {
-            this.result = response
-            this.downloadLoading = false
-            this.file_id1 = ''
-          })
-          .catch(error => {
-            this.downloadLoading = false
-            this.$message.error('对比失败');
-            console.error('对比失败:', error);
-          });
-
-
-    },
     handleUploadSuccess(response,file) {
         let result = response
         this.fileList1=[file]
@@ -137,7 +119,14 @@ export default {
   },
 
   mounted() {
-    this.uploadHost = "/api/ai/vl/ocr";
+    const mode = process.env.VUE_APP_MODE
+    console.log("mode="+mode)
+    if(mode === 'pro'){
+      this.uploadHost = api.defaults.baseURL+"/ai/vl/ocr";
+    }else{
+      this.uploadHost = "/api/ai/vl/ocr";
+    }
+
     this.markdownContent = "" +
         "        A very simple way of OCR-ing a document of AI vision.\n" +
         "        Documents are meant to be a visual representation after all.\n" +

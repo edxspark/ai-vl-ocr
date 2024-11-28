@@ -1,9 +1,7 @@
-// src/api/api.js
 import axios from 'axios'
 
-// 创建一个 Axios 实例
 const api = axios.create({
-    baseURL: 'http://127.0.0.1:8080',
+    baseURL: process.env.VUE_APP_BACKEND_HOST,
     timeout: 10000
 })
 
