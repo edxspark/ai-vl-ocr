@@ -29,7 +29,7 @@ processor = AutoProcessor.from_pretrained(model_dir, min_pixels=min_pixels, max_
 class QwenVL:
 
     @staticmethod
-    def vl_ocr(img_paths: [], prompt: str, returnType: str):
+    def vl_ocr(img_path, prompt: str, returnType: str):
 
         # Prompt
         vl_prompt = f"""
@@ -43,13 +43,11 @@ class QwenVL:
 
         # Content
         content = []
-        for img_path in img_paths:
-
-            img = {
-                "type": "image",
-                "image": img_path,
-            }
-            content.append(img)
+        img = {
+            "type": "image",
+            "image": img_path,
+        }
+        content.append(img)
         content.append({"type": "text", "text": vl_prompt})
         messages = [
             {

@@ -16,15 +16,20 @@ STORAGE_PATH = os.getenv("STORAGE_PATH")
 # 3. To Call function of AI VL OCR
 # 4. Return markdown
 def ai_vl_ocr(aivlBo: AIVLBo, file: UploadFile):
-    img_paths = []
     if aivlBo.docType == DocTypeEnum.IMG.value:
         img_path = FileUtil.save_file(file)
-        img_paths.append(img_path)
-        return QwenVL.vl_ocr(img_paths, aivlBo.prompt, aivlBo.returnType)
+        print("img_path:", img_path)
+        result = QwenVL.vl_ocr(img_path, aivlBo.prompt, aivlBo.returnType)
+        result = result.replace("```markdown", "").replace("```", "")
+        return result
     elif aivlBo.docType == DocTypeEnum.PDF.value:
         img_paths = PDFUtil.pdf_to_images(file)
+        results = []
         for img_path in img_paths:
             print("img_path:", img_path)
-        return QwenVL.vl_ocr(img_paths, aivlBo.prompt, aivlBo.returnType)
+            result = QwenVL.vl_ocr(img_path, aivlBo.prompt, aivlBo.returnType)
+            result = result.replace("```markdown", "").replace("```", "")
+            results.append(result)
+        return ''.join(results)
     else:
         return "Document type not supported."
