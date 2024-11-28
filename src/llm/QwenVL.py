@@ -73,7 +73,7 @@ class QwenVL:
 
         image_inputs, video_inputs = process_vision_info(messages)
         inputs = processor(
-            text=[texts],
+            texts=[texts],
             images=image_inputs,
             videos=video_inputs,
             padding=True,
