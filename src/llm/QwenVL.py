@@ -50,7 +50,7 @@ class QwenVL:
                 "image": img_path,
             }
             content.append(img)
-        content.append({"type": "text", "text": "What are the common elements in these pictures?"})
+        content.append({"type": "text", "text": vl_prompt})
         messages = [
             {
                 "role": "user",
@@ -58,22 +58,13 @@ class QwenVL:
             }
         ]
 
-        messages2 = [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": vl_prompt},
-        ]
-
-        # Combine messages for batch processing
-        messages = [messages, messages2]
-
         # Preparation for inference
-        texts = processor.apply_chat_template(
-            processor.apply_chat_template(msg, tokenize=False, add_generation_prompt=True)
-            for msg in messages
+        text = processor.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
         )
         image_inputs, video_inputs = process_vision_info(messages)
         inputs = processor(
-            text=[texts],
+            text=[text],
             images=image_inputs,
             videos=video_inputs,
             padding=True,
