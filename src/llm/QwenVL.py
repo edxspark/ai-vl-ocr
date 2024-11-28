@@ -84,4 +84,3 @@ class QwenVL:
         return output_text
 
 
-
