@@ -13,11 +13,11 @@ def pdf_to_images(file: UploadFile):
 
     # Save file
     pdf_file_path = FileUtil.save_file(file)
-    print("pdf_file_path=", pdf_file_path)
+    #print("pdf_file_path=", pdf_file_path)
 
     # Output images path
     pdf_save_dir = os.path.dirname(pdf_file_path)
-    print("pdf_save_dir=", pdf_save_dir)
+    #print("pdf_save_dir=", pdf_save_dir)
 
     pdf_images_directory = f"{pdf_save_dir}/imgs"
     os.makedirs(pdf_images_directory, exist_ok=True)
