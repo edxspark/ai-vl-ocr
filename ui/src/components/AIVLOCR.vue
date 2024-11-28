@@ -111,9 +111,7 @@ export default {
 
     },
     handleUploadSuccess(response,file) {
-        let result = response[0]
-        result = result.replace("```markdown","")
-        result = result.replace("```","")
+        let result = response
         this.fileList1=[file]
         console.log(result)
         this.markdownContent = result;
