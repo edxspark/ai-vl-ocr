@@ -39,7 +39,7 @@ class QwenVL:
         Output format: {returnType}
         """
 
-        print("#####prompt:", vl_prompt)
+        print("prompt:", vl_prompt)
 
         # Content
         content = []
