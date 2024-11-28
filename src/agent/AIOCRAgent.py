@@ -20,7 +20,7 @@ def ai_vl_ocr(aivlBo: AIVLBo, file: UploadFile):
         img_path = FileUtil.save_file(file)
         print("img_path:", img_path)
         result = QwenVL.vl_ocr(img_path, aivlBo.prompt, aivlBo.returnType)
-        result = result.replace("```markdown", "").replace("```", "")
+        result = result[0].replace("```markdown", "").replace("```", "")
         return result
     elif aivlBo.docType == DocTypeEnum.PDF.value:
         img_paths = PDFUtil.pdf_to_images(file)
@@ -28,7 +28,7 @@ def ai_vl_ocr(aivlBo: AIVLBo, file: UploadFile):
         for img_path in img_paths:
             print("img_path:", img_path)
             result = QwenVL.vl_ocr(img_path, aivlBo.prompt, aivlBo.returnType)
-            result = result.replace("```markdown", "").replace("```", "")
+            result = result[0].replace("```markdown", "").replace("```", "")
             results.append(result)
         return ''.join(results)
     else:
