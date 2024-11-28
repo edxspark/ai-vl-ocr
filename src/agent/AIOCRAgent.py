@@ -29,7 +29,7 @@ def ai_vl_ocr(aivlBo: AIVLBo, file: UploadFile):
         pdf_length = len(img_paths)
         for img_path in img_paths:
             print(f"{index}/{pdf_length}")
-            print("img_path:", img_path)
+            print(f"{index}/{pdf_length}:", img_path)
             result = QwenVL.vl_ocr(img_path, aivlBo.prompt, aivlBo.returnType)
             result = result[0].replace("```markdown", "").replace("```", "")
             results.append(result)
