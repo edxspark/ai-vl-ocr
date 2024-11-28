@@ -23,6 +23,8 @@ def ai_vl_ocr(aivlBo: AIVLBo, file: UploadFile):
         return QwenVL.vl_ocr(img_paths, aivlBo.prompt, aivlBo.returnType)
     elif aivlBo.docType == DocTypeEnum.PDF.value:
         img_paths = PDFUtil.pdf_to_images(file)
+        for img_path in img_paths:
+            print("img_path:", img_path)
         return QwenVL.vl_ocr(img_paths, aivlBo.prompt, aivlBo.returnType)
     else:
         return "Document type not supported."
