@@ -48,7 +48,7 @@ class QwenVL:
         for img_path in img_paths:
             img = {
                 "type": "image",
-                "image": f"file://{img_path}",
+                "image": f"{img_path}",
             }
             content.append(img)
         content.append({"type": "text", "text": "What are the common elements in these pictures?"},)
