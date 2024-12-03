@@ -2,6 +2,8 @@
 import os
 import sys
 
+from src.llm.QwenVL import QwenVL
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.agent import AIOCRAgent
@@ -32,6 +34,12 @@ def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str 
     result = AIOCRAgent.ai_vl_ocr(aivlBo, file)
     print("#####ai_vl_ocr END")
     return result
+
+
+@app.post("/ai/vl/compare")
+def adv_compare(img_url_1: str, img_url_2: str):
+    return QwenVL.vl_compare(img_url_1,img_url_2)
+
 
 if __name__ == "__main__":
     import uvicorn
