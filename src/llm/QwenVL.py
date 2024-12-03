@@ -13,14 +13,16 @@ AI_VL_MODEL = os.getenv("AI_VL_MODEL")
 
 
 # GPU
-os.environ['MODELSCOPE_CACHE'] = f"{STORAGE_PATH}/models"
-model_dir = snapshot_download(AI_VL_MODEL)
-model = Qwen2VLForConditionalGeneration.from_pretrained(model_dir, torch_dtype="auto", device_map="auto")
+# os.environ['MODELSCOPE_CACHE'] = f"{STORAGE_PATH}/models/hub"
+# model_dir = snapshot_download(AI_VL_MODEL)
+
+model_path = f"{STORAGE_PATH}/models/hub/Qwen/Qwen2-VL-7B-Instruct"
+model = Qwen2VLForConditionalGeneration.from_pretrained(model_path, torch_dtype="auto", device_map="auto")
 
 # These values will be rounded to the nearest multiple of 28.
 min_pixels = 256 * 28 * 28
 max_pixels = 1280 * 28 * 28
-processor = AutoProcessor.from_pretrained(model_dir, min_pixels=min_pixels, max_pixels=max_pixels)
+processor = AutoProcessor.from_pretrained(model_path, min_pixels=min_pixels, max_pixels=max_pixels)
 
 # No GPU
 # model = None
