@@ -21,7 +21,7 @@ model = Qwen2VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=
 
 # These values will be rounded to the nearest multiple of 28.
 min_pixels = 256 * 28 * 28
-max_pixels = 1280 * 28 * 28
+max_pixels = 1080 * 28 * 28
 processor = AutoProcessor.from_pretrained(model_path, min_pixels=min_pixels, max_pixels=max_pixels)
 
 # No GPU
