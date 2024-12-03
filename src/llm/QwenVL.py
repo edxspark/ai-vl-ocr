@@ -84,7 +84,8 @@ class QwenVL:
 
         return output_text
 
-    def vl_compare(slef, img_path1, img_path2):
+    @staticmethod
+    def vl_compare(img_path1, img_path2):
 
         print("###img_path1=", img_path1)
         print("###img_path2=", img_path2)

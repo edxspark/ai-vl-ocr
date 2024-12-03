@@ -37,7 +37,7 @@ def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str 
 
 @app.post("/ai/vl/compare")
 def adv_compare(img_url_1: str, img_url_2: str):
-    return QwenVL.vl_compare(img_url_1,img_url_2)
+    return QwenVL.vl_compare(img_url_1, img_url_2)
 
 
 if __name__ == "__main__":
