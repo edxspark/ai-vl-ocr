@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 from src.llm.QwenVL import QwenVL
-from src.agent import AIOCRAgent
+from src.agent import AIOCRAgent, AgentAdv
 from src.domain.BO import AIVLBo
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,9 +35,17 @@ def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str 
     return result
 
 
+@app.post("/ai/adv/agent/upload")
+def adv_upload(file: UploadFile = File(...)):
+    return AgentAdv.adv_upload(file)
+
+
 @app.post("/ai/vl/compare")
 def adv_compare(img_url_1: str, img_url_2: str):
-    return QwenVL.vl_compare(img_url_1, img_url_2)
+    if "http" in img_url_1 or "http" in img_url_2:
+        return QwenVL.vl_compare(img_url_1, img_url_2)
+    else:
+        return AgentAdv.adv_compare(img_url_1, img_url_2)
 
 
 if __name__ == "__main__":
