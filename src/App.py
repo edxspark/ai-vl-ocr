@@ -32,6 +32,7 @@ def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str 
     aivlBo = AIVLBo(docType=docType, returnType=returnType, prompt=prompt, file=file)
     print("#####ai_vl_ocr BEG")
     result = AIOCRAgent.ai_vl_ocr(aivlBo, file)
+    print("result=", result)
     if returnType == "JSON":
         result = result.replace("```json", "").replace("```", "")
         result = json.loads(result)
