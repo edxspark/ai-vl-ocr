@@ -1,24 +1,14 @@
 <template>
   <div>
-    <el-row type="flex" justify="space-between" class="nav-bar">
-      <el-col :span="8" class="left-content">
-        <img src="@/assets/logo.jpg" alt="logo" class="logo" />
-        <span class="title">superforu-ai-ocr</span>
-      </el-col>
-      <el-col :span="8" style="vertical-align: middle">
-        <span style="font-weight: bold;">AI vision document OCR</span>
-      </el-col>
-    </el-row>
-    <el-divider style="margin:2px !important;"></el-divider>
     <div class="verification-page">
       <div class="upload-section">
         <el-row>
-           <el-col :span="16" style="overflow-y: auto;border-radius:8px 0px 0px 8px;text-align: left; padding-left: 10px;padding-top: 20px; background-color: #2c3e50;height: 700px">
+           <el-col :span="16" style="overflow-y: auto;border-radius:8px 0px 0px 8px;text-align: left; padding-left: 10px;padding-top: 10px; background-color: #2c3e50;height: 600px">
                <div>
                  <vue-markdown :source="markdownContent" style="color: #ffffff;font-size: 14px"></vue-markdown>
                </div>
            </el-col>
-          <el-col :span="8" style="border-radius:0px 8px 8px 0px;text-align: center;padding-right: 10px;padding-top: 50px;background-color: #2c3e50;border-left: 1px solid gray;height: 700px">
+          <el-col :span="8" style="border-radius:0px 8px 8px 0px;text-align: center;padding-right: 10px;padding-top: 50px;background-color: #2c3e50;border-left: 1px solid gray;height: 600px">
             <el-form ref="form" :model="form" label-width="0px" label-position="right">
 <!--                <el-form-item label="DocType" >-->
 <!--                  <el-select v-model="form.docType" placeholder="" style="width: 300px">-->
@@ -33,7 +23,7 @@
                   </el-select>
                 </el-form-item>
                 <el-form-item label="Prompt">
-                  <el-input type="textarea" v-model="form.prompt" style="width: 300px"></el-input>
+                  <el-input type="textarea" v-model="form.prompt" rows="5" style="width: 300px"></el-input>
                 </el-form-item>
               </el-form>
             <el-upload class="upload-demo" drag ref="upload" :action="uploadHost" :data="uploadData"
@@ -146,10 +136,7 @@ export default {
 
 
 <style scoped>
-.nav-bar {
-  padding: 2px;
-  background-color: white;
-}
+
 
 .left-content {
   display: flex;
