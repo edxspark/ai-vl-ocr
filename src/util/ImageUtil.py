@@ -8,3 +8,7 @@ def resize_image(input_image_path, output_image_path, size):
         new_height = size if height > width else int((size / width) * height)
         resized_image = image.resize((new_width, new_height))
         resized_image.save(output_image_path)
+
+
+if __name__ == '__main__':
+    resize_image("m3.jpg", "m3_resized.jpg", 1000)

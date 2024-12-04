@@ -5,6 +5,7 @@ from qwen_vl_utils import process_vision_info
 from modelscope import snapshot_download
 from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
 from dotenv import load_dotenv
+import torch
 
 
 load_dotenv()
@@ -17,12 +18,17 @@ AI_VL_MODEL = os.getenv("AI_VL_MODEL")
 # model_dir = snapshot_download(AI_VL_MODEL)
 
 model_path = f"{STORAGE_PATH}/models/hub/Qwen/Qwen2-VL-7B-Instruct"
-model = Qwen2VLForConditionalGeneration.from_pretrained(model_path, torch_dtype="auto", device_map="auto")
+model = Qwen2VLForConditionalGeneration.from_pretrained(model_path,
+                                                        torch_dtype=torch.bfloat16,
+                                                        attn_implementation="flash_attention_2",
+                                                        device_map="auto")
 
 # These values will be rounded to the nearest multiple of 28.
 min_pixels = 256 * 28 * 28
 max_pixels = 1080 * 28 * 28
-processor = AutoProcessor.from_pretrained(model_path, min_pixels=min_pixels, max_pixels=max_pixels)
+processor = AutoProcessor.from_pretrained(model_path,
+                                          min_pixels=min_pixels,
+                                          max_pixels=max_pixels)
 
 # No GPU
 # model = None
