@@ -1,4 +1,5 @@
 #!/usr/bin/venv python
+import json
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -31,6 +32,10 @@ def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str 
     aivlBo = AIVLBo(docType=docType, returnType=returnType, prompt=prompt, file=file)
     print("#####ai_vl_ocr BEG")
     result = AIOCRAgent.ai_vl_ocr(aivlBo, file)
+    if returnType == "JSON":
+        result = result.replace("```json", "").replace("```", "")
+        result = json.loads(result)
+
     print("#####ai_vl_ocr END")
     return result
 
