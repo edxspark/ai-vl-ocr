@@ -19,6 +19,7 @@ def adv_upload(file: UploadFile):
     file_name, file_extension = os.path.splitext(file.filename)
 
     # 1. 接收压缩包文件
+    os.makedirs(adv_dir_path, exist_ok=True)
     file_name_uuid = str(uuid.uuid4())
     file_name_new = f"{file_name_uuid}{file_extension}"
     file_path = f"{adv_dir_path}/{file_name_new}"
