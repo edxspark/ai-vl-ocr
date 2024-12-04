@@ -33,7 +33,10 @@ python src/App.py
 ```
 
 ## Frontend
-Update backend API [baseURL]: api/api.js
+Update /ui/.env
+dev: proxy that comment proxy code(default)
+pro: unproxy that open proxy code
+
 ```
 cd ui
 npm i
