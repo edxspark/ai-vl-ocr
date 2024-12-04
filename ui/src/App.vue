@@ -14,8 +14,8 @@
     <el-tab-pane label="AIOCR">
        <AIVLOCR msg="Welcome to Superforu AI OCR" />
     </el-tab-pane>
-    <el-tab-pane label="图对比" style="height: 100%">
-      <AdvCom msg="Adv Compare" />
+    <el-tab-pane label="AIVL广告比对" style="height: 100%">
+      <AIVLImg msg="Adv Compare" />
     </el-tab-pane>
   </el-tabs>
 
@@ -25,10 +25,10 @@
 
 <script>
 import AIVLOCR from './components/AIVLOCR.vue'
-import AdvCom from './components/AdvCom.vue'
+import AIVLImg from './components/AIVLImg.vue'
 
 export default {
-  components:{AIVLOCR,AdvCom}
+  components:{AIVLOCR,AIVLImg}
 }
 
 </script>
