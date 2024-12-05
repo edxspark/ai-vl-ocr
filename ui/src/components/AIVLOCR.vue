@@ -3,44 +3,40 @@
     <div class="verification-page">
       <div class="upload-section">
         <el-row>
-           <el-col :span="16" style="overflow-y: auto;border-radius:8px 0px 0px 8px;text-align: left; padding-left: 10px;padding-top: 10px; background-color: #2c3e50;height: 600px">
+           <el-col :span="16" style="overflow-y: auto;text-align: left; padding-left: 10px;padding-top: 10px; background-color: #202222;height: 650px">
                <div>
                  <vue-markdown :source="markdownContent" style="color: #ffffff;font-size: 14px"></vue-markdown>
                </div>
            </el-col>
-          <el-col :span="8" style="border-radius:0px 8px 8px 0px;text-align: center;padding-right: 10px;padding-top: 50px;background-color: #2c3e50;border-left: 1px solid gray;height: 600px">
-            <el-form ref="form" :model="form" label-width="0px" label-position="right">
-<!--                <el-form-item label="DocType" >-->
-<!--                  <el-select v-model="form.docType" placeholder="" style="width: 300px">-->
-<!--                    <el-option label="IMG" value="IMG"></el-option>-->
-<!--                    <el-option label="PDF" value="PDF"></el-option>-->
-<!--                  </el-select>-->
-<!--                </el-form-item>-->
-                <el-form-item label="ReturnType">
+          <el-col :span="8" style="text-align: center;padding-right: 20px;padding-top: 50px;background-color: #202222;border-left: 1px solid gray;height: 650px">
+            <el-form ref="form" :model="form" label-width="80px" label-position="right">
+                <el-form-item label="返回类型">
                   <el-select v-model="form.returnType" placeholder="" style="width: 300px">
-                    <el-option label="MARKDOWN" value="MARKDOWN"></el-option>
                     <el-option label="JSON" value="JSON"></el-option>
+                    <el-option label="MARKDOWN" value="MARKDOWN"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="Prompt">
+                <el-form-item label="提取描述">
                   <el-input type="textarea" v-model="form.prompt" rows="5" style="width: 300px"></el-input>
                 </el-form-item>
               </el-form>
+
             <el-upload class="upload-demo" drag ref="upload" :action="uploadHost" :data="uploadData"
                        :before-upload="beforeUpload"
                        :on-remove="handleFileRemove" accept=".jpg,.png,.jpeg,.pdf"
                        :on-success="handleUploadSuccess" :file-list="fileList1"
                        :on-error="handleUploadError" multiple>
               <i class="el-icon-upload"></i>
-              <div class="el-upload__text">Click upload <em>pdf/img</em></div>
+              <div class="el-upload__text">上传 <em>pdf/img</em></div>
             </el-upload>
+            <div style="color: #ffffff;font-size: 14px;margin-left: 120px">上传完文件，自动触发识别</div>
           </el-col>
 
         </el-row>
       </div>
     </div>
     <div style="padding-top: 10px">
-    <span>Power By @EdxSpark</span>
+    <span></span>
     </div>
   </div>
 
@@ -62,8 +58,8 @@ export default {
       markdownContent:'',
       form:{
         docType:'IMG',
-        returnType:'MARKDOWN',
-        prompt:'Help me accurately identify the content of the file'
+        returnType:'JSON',
+        prompt:'帮我提取文件中：姓名、车牌号、金额'
       },
       result:'',
       downloadLoading: false,
@@ -85,8 +81,12 @@ export default {
     handleUploadSuccess(response,file) {
         let result = response
         this.fileList1=[file]
-        console.log(result)
-        this.markdownContent = result;
+        console.log("result="+result)
+        if(this.form.returnType === "JSON"){
+          this.markdownContent = JSON.stringify(result);
+        }else{
+          this.markdownContent = result;
+        }
     },
     handleUploadError(err, file) {
       this.$message.error(`${file.name} Failure`);
@@ -117,17 +117,21 @@ export default {
       this.uploadHost = "/api/ai/vl/ocr";
     }
 
-    this.markdownContent = "" +
-        "        A very simple way of OCR-ing a document of AI vision.\n" +
-        "        Documents are meant to be a visual representation after all.\n" +
-        "        With weird layouts, tables, charts, etc.\n" +
-        "        The vision models just make sense!\n" +
+    this.markdownContent = "## 一种非常简单的OCR AI视觉识别\n" +
         "\n" +
-        "        The general logic:\n" +
-        "        - Pass in a file (pdf, image, etc.)\n" +
-        "        - Convert that file into a series of images\n" +
-        "        - Pass each image to AI vision LLM and ask nicely for Markdown\n" +
-        "        - Aggregate the responses and return Markdown or JSON";
+        "- 把文档转成图片进行视觉识别，\n" +
+        "\n" +
+        "- 识别文档的布局、表格、图表等。\n" +
+        "\n" +
+        "## 处理逻辑\n" +
+        "\n" +
+        "- 传入文件（pdf、图像等）\n" +
+        "\n" +
+        "- 将该文件转换为一系列图像\n" +
+        "\n" +
+        "- 将每张图片传递给AIVL LLM\n" +
+        "\n" +
+        "- 聚合响应并返回Markdown或JSON";
   },
   beforeDestroy() {
   }
@@ -159,10 +163,9 @@ export default {
 
 .verification-page {
   width: 95%;
-  min-height: 700px;
-  background-color: white;
-  margin: 10px 20px;
-
+  height: 100%;
+  background-color: #371F6D;
+  margin-top: 10px;
 }
 
 .upload-section {
@@ -173,6 +176,7 @@ export default {
 .upload-demo {
   margin-bottom: 10px;
   margin-top: 20px;
+  margin-left: 110px;
 }
 
 /deep/ .el-form-item__label{

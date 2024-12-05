@@ -1,8 +1,8 @@
 <template>
-  <div style="background-color:#ffffff;height: 600px">
+  <div style="background-color:#202222;height: 600px;border-radius:0px 8px 8px 0px;">
     <div class="verification-page">
       <div class="steps-section">
-        <div class="upload-section-title">对比流程</div>
+<!--        <div class="upload-section-title">对比流程</div>-->
         <el-steps :active="activeStep" align-center>
           <el-step title="上传广告设计图"></el-step>
           <el-step title="上传实际效果图"></el-step>
@@ -43,7 +43,7 @@
       <el-divider></el-divider>
       <el-row style="padding-top: 2px;padding-bottom: 30px;">
         <el-col :span="24">
-          <pre style="text-align: left;white-space: pre-wrap;">{{result}}</pre>
+          <pre style="text-align: left;white-space: pre-wrap;color: #ffffff">{{result}}</pre>
         </el-col>
       </el-row>
 
@@ -180,68 +180,24 @@ export default {
 }
 </style>
 <style scoped>
-.nav-bar {
-  padding: 2px;
-  background-color: white;
-}
-
-.left-content {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
-}
-
-.title {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.right-content {
-  display: flex;
-  font-size: 13px;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.uuid-btn {
-  background-color: #FAC070;
-  color: white;
-  font-size: 15px;
-  padding: 10px;
-  margin-right: 15px;
-}
-
-.client-info {
-  display: flex;
-  align-items: center;
-}
-
-.copy-link,
-.settings-link {
-  margin-left: 10px;
-}
 
 .verification-page {
   width: 90%;
-  background-color: white;
+  background-color: #202222;
   margin: 10px auto;
   padding: 10px 20px;
 
 }
 
 .steps-section {
-  background-color: #F7F8FA;
+  background-color: #202222;
   padding: 5px 0px;
 }
 
 .upload-section {
   margin: 20px 0px;
   display: inline;
+  background-color: #371F6D;
 }
 
 .upload-btn {
@@ -255,6 +211,7 @@ export default {
   margin-left: 5%;
   text-align: left;
   font-size: 14px;
+  color: #ffffff;
 }
 
 .upload-demo {
@@ -265,13 +222,10 @@ export default {
   font-size: 16px;
 }
 
-.file-list-section {}
 
-.el-pagination {
-  margin-top: 20px;
-  text-align: right;
+/deep/ .el-divider{
+  background-color: gray;
 }
-
 
 /deep/.el-step__title {
   font-size: 14px;
@@ -334,7 +288,7 @@ export default {
 }
 
 /deep/.el-step__title.is-finish {
-  color: #5866f2;
+  color: #ffffff;
 }
 
 /deep/ .el-upload-dragger:hover {

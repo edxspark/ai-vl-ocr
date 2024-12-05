@@ -2,25 +2,25 @@
   <div id="app">
     <el-row type="flex" justify="space-between" class="nav-bar">
       <el-col :span="8" class="left-content">
-        <img src="@/assets/logo.jpg" alt="logo" class="logo" />
+        <img src="@/assets/logo.png" alt="logo" class="logo" />
         <span class="title">superforu-ai-ocr</span>
       </el-col>
-      <el-col :span="8" style="vertical-align: middle">
-        <span style="font-weight: bold;">AI vision document OCR</span>
+      <el-col :span="8" style="margin-top: 10px" >
+        <span style="font-weight: bold;color:#ffffff">AI vision document OCR</span>
       </el-col>
     </el-row>
 
-  <el-tabs tab-position="left" style="height: 100%">
-    <el-tab-pane label="AIOCR">
+  <el-tabs tab-position="left" style="height: 100%;border-bottom: 1px solid gray;margin-right:20px">
+    <el-tab-pane label="AIOCR识别" style="background-color: #202222">
        <AIVLOCR msg="Welcome to Superforu AI OCR" />
     </el-tab-pane>
-    <el-tab-pane label="AIVL广告比对" style="height: 100%">
+    <el-tab-pane label="AIVL广告比对" style="height: 100%;background-color: #202222">
       <AIVLImg msg="Adv Compare" />
     </el-tab-pane>
   </el-tabs>
-
-
+     <div style="margin-top: 20px">Copyright@2024</div>
   </div>
+
 </template>
 
 <script>
@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 #app {
   font-family: "微软雅黑", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -53,16 +55,28 @@ export default {
 }
 
 .nav-bar {
+  padding-top: 10px;
   padding-bottom: 10px;
-  background-color: white;
-  border-bottom: #E4E7ED solid 1px;
+  background-color: #191a1a;
+  border-bottom: 1px solid gray;
 }
 
 .title {
   font-size: 32px;
   font-weight: bold;
-  color:#5866f2;
+  color:#ffffff;
 }
+
+
+/deep/ .el-tabs__item{
+  color: #ffffff;
+}
+
+/deep/ .el-tabs__nav-wrap::after{
+  background-color: gray;
+  width: 1px !important;
+}
+
 
 /deep/ .el-tabs__item.is-active{
   color:#5866f2;
@@ -73,10 +87,14 @@ export default {
 }
 
 /deep/ .el-tabs--left .el-tabs__header.is-left{
-  height: 600px;
+  height: 700px;
 }
 
 /deep/ .el-tabs__item:hover{
   color: #5866f2;
+}
+
+/deep/ .el-tabs--left .el-tabs__active-bar.is-left, .el-tabs--left .el-tabs__active-bar.is-right, .el-tabs--right .el-tabs__active-bar.is-left, .el-tabs--right .el-tabs__active-bar.is-right {
+  width: 1px !important;
 }
 </style>
