@@ -33,9 +33,9 @@ python src/App.py
 ```
 
 ## Frontend
-Update /ui/.env
-dev: proxy that comment proxy code(default)
-pro: unproxy that open proxy code
+Update /ui/.env  
+dev: proxy(default)  
+pro: unproxy
 
 ```
 cd ui
