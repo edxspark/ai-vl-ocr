@@ -41,7 +41,7 @@ def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str 
     return result
 
 @app.post("/ai/vl/ocr/pdf_url")
-def ai_vl_ocr_pdf_url(prompt: str = Form(...), file_url: str = Form(...)):
+def ai_vl_ocr_pdf_url(prompt: str, file_url: str):
     aivlPdfBo = AIVLPdfBo(prompt=prompt, fileURL=file_url)
     print("#####ai_vl_ocr_url BEG")
     result = AIOCRAgent.ai_vl_ocr_pdf_url(aivlPdfBo)
