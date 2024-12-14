@@ -6,3 +6,4 @@ class AIVLBo(BaseModel):
     docType: str
     returnType: str
     prompt: str
+    fileURL: str
