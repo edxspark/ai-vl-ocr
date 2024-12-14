@@ -7,3 +7,7 @@ class AIVLBo(BaseModel):
     returnType: str
     prompt: str
     fileURL: str
+
+class AIVLPdfBo(BaseModel):
+    prompt: str
+    fileURL: str

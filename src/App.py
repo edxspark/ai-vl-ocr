@@ -2,14 +2,12 @@
 import json
 import os
 import sys
-from typing import Optional
-
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 from src.llm.QwenVL import QwenVL
 from src.agent import AIOCRAgent, AgentAdv
-from src.domain.BO import AIVLBo
+from src.domain.BO import AIVLBo, AIVLPdfBo
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -30,8 +28,8 @@ app.add_middleware(
 
 # Upload file
 @app.post("/ai/vl/ocr")
-def ai_vl_ocr(docType: str = Form(...), returnType: str = Form(...), prompt: str = Form(...), file: Optional[UploadFile] = None, file_url: Optional[str] = Form(...)):
-    aivlBo = AIVLBo(docType=docType, returnType=returnType, prompt=prompt, fileURL=file_url)
+def ai_vl_ocr(docType: str = Form(...),returnType: str = Form(...), prompt: str = Form(...), file: UploadFile = File(...)):
+    aivlBo = AIVLBo(docType=docType, returnType=returnType, prompt=prompt, fileURL="")
     print("#####ai_vl_ocr BEG")
     result = AIOCRAgent.ai_vl_ocr(aivlBo, file)
     print("result=", result)
@@ -40,6 +38,17 @@ def ai_vl_ocr(docType: str = Form(...), returnType: str = Form(...), prompt: str
         result = json.loads(result)
 
     print("#####ai_vl_ocr END")
+    return result
+
+@app.post("/ai/vl/ocr/pdf_url")
+def ai_vl_ocr_pdf_url(prompt: str = Form(...), file_url: str = Form(...)):
+    aivlPdfBo = AIVLPdfBo(prompt=prompt, fileURL=file_url)
+    print("#####ai_vl_ocr_url BEG")
+    result = AIOCRAgent.ai_vl_ocr_pdf_url(aivlPdfBo)
+    print("result=", result)
+    result = result.replace("json", "").replace("```", "")
+    result = json.loads(result)
+    print("#####ai_vl_ocr_url END")
     return result
 
 
