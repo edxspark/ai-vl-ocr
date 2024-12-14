@@ -27,6 +27,15 @@ def ai_vl_ocr(aivlBo: AIVLBo, file: UploadFile):
         result = QwenVL.vl_ocr(img_path, aivlBo.prompt, aivlBo.returnType)
         rt_result = result[0]
     elif aivlBo.docType == DocTypeEnum.PDF.value:
+
+        # File URL
+        if aivlBo.fileURL != "":
+            status, filepath = FileUtil.download_pdf(aivlBo.fileURL)
+            if not status:
+                return f"Download PDF Failed,file_url={filepath}"
+            else:
+                file = FileUtil.file_to_upload_file(filepath)
+
         img_paths = PDFUtil.pdf_to_images(file)
         results = []
         index = 1

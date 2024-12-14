@@ -1,6 +1,9 @@
 import os
 import uuid
+from io import BytesIO
+from pathlib import Path
 
+import requests
 from fastapi import UploadFile
 from dotenv import load_dotenv
 
@@ -18,6 +21,35 @@ def save_file(file: UploadFile):
     with open(file_save_path, "wb") as buffer:
         buffer.write(file.file.read())
     return file_save_path
+
+
+def download_pdf(pdf_url: str):
+    print("#####downloading={}".format(pdf_url))
+    response = requests.get(pdf_url, stream=True)
+    print("#####downloaded.response.status.code={}".format(response.status_code))
+    pdf_file_name = os.path.basename(pdf_url)
+    filepath = ""
+    if response.status_code == 200:
+        filepath = os.path.join(f"{STORAGE_PATH}/download/", pdf_file_name)
+        with open(filepath, 'wb') as pdf_object:
+            pdf_object.write(response.content)
+            print(f'#####{pdf_file_name} Successfully Downloaded!')
+        return True, filepath
+    else:
+        print(f'#####Download Failure： {pdf_file_name}')
+        print(f'#####Download Failure：HTTP response status code: {response.status_code}')
+        return False, filepath
+
+
+def file_to_upload_file(file_path: str):
+    print(f'#####file_to_upload_file.file_path： {file_path}')
+    file_path = Path(file_path)
+    file_content = BytesIO(file_path.read_bytes())
+    file = UploadFile(
+        filename=file_path.name,
+        file=file_content,
+    )
+    return file
 
 
 if __name__ == '__main__':
