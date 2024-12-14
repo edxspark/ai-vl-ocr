@@ -30,7 +30,9 @@ def download_pdf(pdf_url: str):
     pdf_file_name = os.path.basename(pdf_url)
     filepath = ""
     if response.status_code == 200:
-        filepath = os.path.join(f"{STORAGE_PATH}/download/", pdf_file_name)
+        download_dir = f"{STORAGE_PATH}/download/"
+        os.makedirs(download_dir, exist_ok=True)
+        filepath = os.path.join(download_dir, pdf_file_name)
         with open(filepath, 'wb') as pdf_object:
             pdf_object.write(response.content)
             print(f'#####{pdf_file_name} Successfully Downloaded!')
