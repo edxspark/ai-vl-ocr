@@ -46,8 +46,6 @@ def ai_vl_ocr_pdf_url(prompt: str = Form(...), file_url: str = Form(...)):
     print("#####ai_vl_ocr_url BEG")
     result = AIOCRAgent.ai_vl_ocr_pdf_url(aivlPdfBo)
     print("result=", result)
-    result = result.replace("json", "").replace("```", "")
-    result = json.loads(result)
     print("#####ai_vl_ocr_url END")
     return result
 
